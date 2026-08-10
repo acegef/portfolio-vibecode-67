@@ -257,6 +257,12 @@ function reveal(){
       card.classList.add('expand');
       setTimeout(()=>{
         card.classList.add('reveal');
+        
+        // Show navbar after card reveal
+        setTimeout(()=>{
+          const navbar=document.getElementById('navbar');
+          if(navbar)navbar.classList.add('show');
+        },300);
       },420);
     },450);
   });
@@ -272,12 +278,23 @@ clickBtn.addEventListener('click',()=>{
   reveal();
 });
 
-const workEl=document.getElementById('work');
-if(workEl){
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting)workEl.classList.add('in');
-    });
-  },{threshold:.15});
-  obs.observe(workEl);
-}
+// Intersection Observer for scroll animations
+const sections=[
+  {id:'about', el:null},
+  {id:'skills', el:null},
+  {id:'work', el:null},
+  {id:'contact', el:null},
+  {id:'footer', el:null}
+];
+
+sections.forEach(section=>{
+  section.el=document.getElementById(section.id);
+  if(section.el){
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting)section.el.classList.add('in');
+      });
+    },{threshold:.15});
+    obs.observe(section.el);
+  }
+});
