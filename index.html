@@ -3,13 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>acegef</title>
+<title>acegef — Developer & Creator</title>
+<meta name="description" content="Portfolio of acegef — 16 y/o developer specializing in C++ and Lua/Luau. Explore my projects, skills, and creative work.">
+<meta name="keywords" content="acegef, developer, programmer, C++, Lua, Luau, portfolio, sapphire">
+<meta name="author" content="acegef">
+<meta property="og:title" content="acegef — Developer & Creator">
+<meta property="og:description" content="16 y/o developer specializing in C++ and Lua/Luau. Explore my projects and creative work.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#161616">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="locked">
+
+<nav id="navbar" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">acegef</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#work">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
 <div class="bg"></div>
 
@@ -22,12 +41,12 @@
   <div class="card-inner">
     <header class="card-top">
       <div class="who">
-        <img class="pfp" src="assets/pfp.png" alt="">
+        <img class="pfp" src="assets/pfp.png" alt="Profile picture of acegef">
         <span class="name">acegef</span>
       </div>
       <div class="gf">
-        <span class="heart">
-          <svg viewBox="0 0 32 29" width="30" height="27">
+        <span class="heart" aria-label="In a relationship">
+          <svg viewBox="0 0 32 29" width="30" height="27" aria-hidden="true">
             <path d="M16 28.5C16 28.5 1 19.2 1 8.9C1 3.7 5.1 1 9 1C12.1 1 14.6 3 16 5.6C17.4 3 19.9 1 23 1C26.9 1 31 3.7 31 8.9C31 19.2 16 28.5 16 28.5Z"/>
           </svg>
           <span class="heart-s">S</span>
@@ -40,19 +59,69 @@
       <p class="hint">sapphire</p>
 
       <div class="links">
-        <a class="link-btn" href="https://github.com/acegef" target="_blank" rel="noopener">
-          <svg viewBox="0 0 16 16" width="15" height="15" fill="currentColor">
+        <a class="link-btn" href="https://github.com/acegef" target="_blank" rel="noopener" aria-label="GitHub profile">
+          <svg viewBox="0 0 16 16" width="15" height="15" fill="currentColor" aria-hidden="true">
             <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
           </svg>
           github/acegef
         </a>
-        <a class="link-btn flex" href="https://r.sunc.su/7MS2ODKQdl" target="_blank" rel="noopener">
+        <a class="link-btn flex" href="https://r.sunc.su/7MS2ODKQdl" target="_blank" rel="noopener" aria-label="sUNC profile">
           sUNC
         </a>
       </div>
     </div>
   </div>
 </div>
+</section>
+
+<section id="about">
+  <div class="section-inner">
+    <h2 class="section-title">About Me</h2>
+    <p class="about-text">
+      I'm a 16-year-old developer passionate about creating elegant solutions with C++ and Lua/Luau. 
+      My journey in programming started with a curiosity for how things work, and it's evolved into 
+      building projects that blend functionality with creativity. When I'm not coding, you'll find 
+      me exploring music, gaming, or diving into new technologies.
+    </p>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-inner">
+    <h2 class="section-title">Skills & Technologies</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <span class="skill-icon">⚡</span>
+        <h3>Languages</h3>
+        <ul class="skill-list">
+          <li>C++</li>
+          <li>Lua / Luau</li>
+          <li>JavaScript</li>
+          <li>HTML/CSS</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">🛠️</span>
+        <h3>Tools</h3>
+        <ul class="skill-list">
+          <li>Git & GitHub</li>
+          <li>Visual Studio</li>
+          <li>Roblox Studio</li>
+          <li>Command Line</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">🎯</span>
+        <h3>Focus Areas</h3>
+        <ul class="skill-list">
+          <li>Game Development</li>
+          <li>System Programming</li>
+          <li>Web Development</li>
+          <li>Scripting</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </section>
   
 <div id="lyrics-bar">
@@ -64,7 +133,7 @@
     <div class="player-top">
       <span id="track-name">—</span>
       <button id="shuffle-btn" title="random track" aria-label="random track">
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <polyline points="16 3 21 3 21 8"></polyline>
           <line x1="4" y1="20" x2="21" y2="3"></line>
           <polyline points="21 16 21 21 16 21"></polyline>
@@ -76,24 +145,78 @@
 
     <div class="player-mid">
       <button id="play-btn" aria-label="play or pause">
-        <svg id="icon-play" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><polygon points="6 4 20 12 6 20"></polygon></svg>
-        <svg id="icon-pause" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="display:none"><rect x="5" y="4" width="5" height="16"></rect><rect x="14" y="4" width="5" height="16"></rect></svg>
+        <svg id="icon-play" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20"></polygon></svg>
+        <svg id="icon-pause" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="display:none" aria-hidden="true"><rect x="5" y="4" width="5" height="16"></rect><rect x="14" y="4" width="5" height="16"></rect></svg>
       </button>
 
       <span id="time-cur">0:00</span>
-      <input id="seek" type="range" min="0" max="100" value="0" step="0.1">
+      <input id="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Seek slider">
       <span id="time-dur">0:00</span>
     </div>
 
     <div class="player-bottom">
-      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
         <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
       </svg>
-      <input id="volume" type="range" min="0" max="1" value="0.8" step="0.01">
+      <input id="volume" type="range" min="0" max="1" value="0.8" step="0.01" aria-label="Volume slider">
     </div>
   </div>
 </div>
+
+<section id="work">
+  <div class="section-inner">
+    <h2 class="section-title">Projects</h2>
+    <div class="work-grid">
+      <article class="work-card">
+        <span class="work-num">01</span>
+        <h3>sUNC Integration</h3>
+        <p>Discord verification and community management system with advanced role automation.</p>
+        <a href="https://r.sunc.su/7MS2ODKQdl" target="_blank" rel="noopener" class="project-link">View Project →</a>
+      </article>
+      <article class="work-card">
+        <span class="work-num">02</span>
+        <h3>C++ Systems</h3>
+        <p>High-performance system utilities and tools built with modern C++ practices.</p>
+        <a href="https://github.com/acegef" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+      </article>
+      <article class="work-card">
+        <span class="work-num">03</span>
+        <h3>Lua/Luau Scripts</h3>
+        <p>Custom scripting solutions for Roblox and other Lua-based platforms.</p>
+        <a href="https://github.com/acegef" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-inner">
+    <h2 class="section-title">Get In Touch</h2>
+    <p class="contact-text">
+      Interested in collaborating or have a question? Feel free to reach out!
+    </p>
+    <div class="contact-links">
+      <a href="mailto:contact@acegef.dev" class="contact-btn">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        Email Me
+      </a>
+      <a href="https://github.com/acegef" target="_blank" rel="noopener" class="contact-btn">
+        <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true">
+          <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+        </svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer id="footer">
+  <p>&copy; 2024 acegef. Crafted with passion.</p>
+</footer>
 
 <audio id="song" preload="auto"></audio>
 
