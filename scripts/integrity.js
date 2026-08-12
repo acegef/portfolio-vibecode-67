@@ -1,8 +1,6 @@
 (() => {
     "use strict";
 
-    const REDIRECT_URL = "https://cometsploit.com";
-
     let failed = false;
     let songs = [];
     let currentSong = 0;
@@ -19,31 +17,10 @@
         } catch (_) {}
 
         try {
-            window.location.replace(REDIRECT_URL);
+            window.location.replace("https://cometsploit.com");
         } catch (_) {
-            window.location.href = REDIRECT_URL;
+            window.location.href = "https://cometsploit.com";
         }
-    }
-
-    function startupCheck() {
-        const host =
-            String(location.hostname || "").toLowerCase();
-
-        const allowed =
-            host === "cometsploit.com" ||
-            host.endsWith(".cometsploit.com");
-
-        if (!allowed) {
-            redirect();
-            return false;
-        }
-
-        if (window.top !== window.self) {
-            redirect();
-            return false;
-        }
-
-        return true;
     }
 
     function requiredDOMExists() {
@@ -71,49 +48,16 @@
             "audio"
         ];
 
-        for (const id of ids) {
-            if (!$(id)) {
-                return false;
-            }
-        }
-
-        return true;
+        return ids.every(id => $(id));
     }
 
     function runtimeIntegrityCheck() {
         if (failed) return;
 
-        if (!document.body) {
-            redirect();
-            return;
-        }
-
-        if (!$("site-content")) {
-            redirect();
-            return;
-        }
-
-        if (!$("page")) {
-            redirect();
-            return;
-        }
-
-        if (!$("audio")) {
-            redirect();
-            return;
-        }
-
-        const scriptFound =
-            Array.from(document.scripts).some(script => {
-                const src =
-                    String(script.src || "").toLowerCase();
-
-                return src.includes(
-                    "/scripts/integrity.js"
-                );
-            });
-
-        if (!scriptFound) {
+        if (!document.body ||
+            !$("site-content") ||
+            !$("page") ||
+            !$("audio")) {
             redirect();
         }
     }
@@ -121,77 +65,19 @@
     function setupProtection() {
         document.addEventListener(
             "contextmenu",
-            event => {
-                event.preventDefault();
-            },
+            event => event.preventDefault(),
             true
         );
 
         document.addEventListener(
             "dragstart",
-            event => {
-                event.preventDefault();
-            },
+            event => event.preventDefault(),
             true
         );
 
         document.addEventListener(
             "selectstart",
-            event => {
-                event.preventDefault();
-            },
-            true
-        );
-
-        document.addEventListener(
-            "keydown",
-            event => {
-                const key =
-                    String(event.key || "").toLowerCase();
-
-                const devtools =
-                    event.key === "F12" ||
-                    (
-                        event.ctrlKey &&
-                        event.shiftKey &&
-                        (
-                            key === "i" ||
-                            key === "j" ||
-                            key === "c"
-                        )
-                    ) ||
-                    (
-                        event.metaKey &&
-                        event.altKey &&
-                        (
-                            key === "i" ||
-                            key === "j" ||
-                            key === "c"
-                        )
-                    );
-
-                const source =
-                    (
-                        event.ctrlKey &&
-                        (
-                            key === "u" ||
-                            key === "s"
-                        )
-                    ) ||
-                    (
-                        event.metaKey &&
-                        (
-                            key === "u" ||
-                            key === "s"
-                        )
-                    );
-
-                if (devtools || source) {
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
-                    redirect();
-                }
-            },
+            event => event.preventDefault(),
             true
         );
     }
@@ -216,43 +102,13 @@
         );
     }
 
-    function setupDevToolsCheck() {
-        let triggered = false;
-
-        setInterval(() => {
-            if (failed || triggered) {
-                return;
-            }
-
-            const width =
-                window.outerWidth -
-                window.innerWidth;
-
-            const height =
-                window.outerHeight -
-                window.innerHeight;
-
-            if (
-                width > 220 ||
-                height > 220
-            ) {
-                triggered = true;
-                redirect();
-            }
-        }, 2500);
-    }
-
     function setupCursor() {
-        const cursor =
-            $("custom-cursor");
+        const cursor = $("custom-cursor");
 
         if (!cursor) return;
 
-        let mouseX =
-            window.innerWidth / 2;
-
-        let mouseY =
-            window.innerHeight / 2;
+        let mouseX = innerWidth / 2;
+        let mouseY = innerHeight / 2;
 
         let cursorX = mouseX;
         let cursorY = mouseY;
@@ -278,72 +134,68 @@
             true
         );
 
-        function lerp(a, b, amount) {
-            return a + (b - a) * amount;
-        }
+        const lerp = (a, b, amount) =>
+            a + (b - a) * amount;
 
         function animate() {
             if (failed) return;
 
-            const dx =
-                mouseX - previousX;
-
-            const dy =
-                mouseY - previousY;
+            const dx = mouseX - previousX;
+            const dy = mouseY - previousY;
 
             previousX = mouseX;
             previousY = mouseY;
 
-            velocityX =
-                lerp(
-                    velocityX,
-                    dx,
-                    0.45
-                );
+            velocityX = lerp(
+                velocityX,
+                dx,
+                0.45
+            );
 
-            velocityY =
-                lerp(
-                    velocityY,
-                    dy,
-                    0.45
-                );
+            velocityY = lerp(
+                velocityY,
+                dy,
+                0.45
+            );
 
-            const speed =
-                Math.sqrt(
-                    velocityX * velocityX +
-                    velocityY * velocityY
-                );
+            const speed = Math.sqrt(
+                velocityX ** 2 +
+                velocityY ** 2
+            );
 
             if (speed > 2) {
+                const length = speed;
+
                 const nx =
-                    velocityX / speed;
+                    velocityX / length;
 
                 const ny =
-                    velocityY / speed;
+                    velocityY / length;
 
-                directionX =
-                    lerp(
-                        directionX,
-                        nx,
-                        0.18
-                    );
+                directionX = lerp(
+                    directionX,
+                    nx,
+                    0.18
+                );
 
-                directionY =
-                    lerp(
-                        directionY,
-                        ny,
-                        0.18
-                    );
+                directionY = lerp(
+                    directionY,
+                    ny,
+                    0.18
+                );
 
-                const length =
+                const directionLength =
                     Math.sqrt(
-                        directionX * directionX +
-                        directionY * directionY
+                        directionX ** 2 +
+                        directionY ** 2
                     );
 
-                if (length > 0.001) {
-                    directionX /= length;
-                    directionY /= length;
+                if (directionLength > 0.001) {
+                    directionX /=
+                        directionLength;
+
+                    directionY /=
+                        directionLength;
                 }
             }
 
@@ -364,33 +216,29 @@
                     intensity * 2.5;
             }
 
-            stretch =
-                lerp(
-                    stretch,
-                    targetStretch,
-                    0.075
-                );
+            stretch = lerp(
+                stretch,
+                targetStretch,
+                0.075
+            );
 
-            blur =
-                lerp(
-                    blur,
-                    targetBlur,
-                    0.075
-                );
+            blur = lerp(
+                blur,
+                targetBlur,
+                0.075
+            );
 
-            cursorX =
-                lerp(
-                    cursorX,
-                    mouseX,
-                    0.4
-                );
+            cursorX = lerp(
+                cursorX,
+                mouseX,
+                0.4
+            );
 
-            cursorY =
-                lerp(
-                    cursorY,
-                    mouseY,
-                    0.4
-                );
+            cursorY = lerp(
+                cursorY,
+                mouseY,
+                0.4
+            );
 
             const tail =
                 11 * (stretch - 1);
@@ -423,28 +271,6 @@
                 cursor.style.opacity = "1";
             }
         );
-
-        document
-            .querySelectorAll(
-                "button, a, input"
-            )
-            .forEach(element => {
-                element.addEventListener(
-                    "mouseenter",
-                    () => {
-                        cursor.style.width = "17px";
-                        cursor.style.height = "17px";
-                    }
-                );
-
-                element.addEventListener(
-                    "mouseleave",
-                    () => {
-                        cursor.style.width = "11px";
-                        cursor.style.height = "11px";
-                    }
-                );
-            });
     }
 
     function updateDate() {
@@ -472,9 +298,7 @@
             now
                 .toLocaleDateString(
                     "en-GB",
-                    {
-                        weekday: "long"
-                    }
+                    { weekday: "long" }
                 )
                 .toUpperCase();
 
@@ -482,9 +306,7 @@
             `${now
                 .toLocaleDateString(
                     "en-GB",
-                    {
-                        month: "long"
-                    }
+                    { month: "long" }
                 )
                 .toUpperCase()}, ${now.getDate()}`;
 
@@ -510,30 +332,28 @@
         const minutes =
             Math.floor(seconds / 60);
 
-        const secondsLeft =
+        const remaining =
             Math.floor(seconds % 60)
                 .toString()
                 .padStart(2, "0");
 
-        return `${minutes}:${secondsLeft}`;
+        return `${minutes}:${remaining}`;
     }
 
     function setPlayIcon(playing) {
-        const icon =
-            $("play-icon");
+        const icon = $("play-icon");
 
         if (!icon) return;
 
-        icon.innerHTML =
-            playing
-                ? '<path d="M7 5h3v14H7zM14 5h3v14h-3z"/>'
-                : '<path d="M8 5v14l11-7z"/>';
+        icon.innerHTML = playing
+            ? '<path d="M7 5h3v14H7zM14 5h3v14h-3z"/>'
+            : '<path d="M8 5v14l11-7z"/>';
     }
 
     function loadSong(index) {
         if (
             failed ||
-            !songs.length
+            songs.length === 0
         ) {
             return;
         }
@@ -567,8 +387,11 @@
         $("audio").load();
 
         $("seek-bar").value = 0;
-        $("current-time").textContent = "0:00";
-        $("duration").textContent = "0:00";
+        $("current-time").textContent =
+            "0:00";
+
+        $("duration").textContent =
+            "0:00";
 
         setPlayIcon(false);
     }
@@ -578,9 +401,7 @@
             const response =
                 await fetch(
                     "songs/songs.json",
-                    {
-                        cache: "no-store"
-                    }
+                    { cache: "no-store" }
                 );
 
             if (!response.ok) {
@@ -594,13 +415,13 @@
 
             if (!Array.isArray(data)) {
                 throw new Error(
-                    "songs.json isn't an array"
+                    "songs.json must contain an array"
                 );
             }
 
             songs = data;
 
-            if (songs.length > 0) {
+            if (songs.length) {
                 loadSong(0);
             }
         } catch (error) {
@@ -612,11 +433,8 @@
     }
 
     function setupPlayer() {
-        const audio =
-            $("audio");
-
-        const seek =
-            $("seek-bar");
+        const audio = $("audio");
+        const seek = $("seek-bar");
 
         $("enter-button").addEventListener(
             "click",
@@ -717,16 +535,12 @@
 
         audio.addEventListener(
             "play",
-            () => {
-                setPlayIcon(true);
-            }
+            () => setPlayIcon(true)
         );
 
         audio.addEventListener(
             "pause",
-            () => {
-                setPlayIcon(false);
-            }
+            () => setPlayIcon(false)
         );
 
         audio.addEventListener(
@@ -744,10 +558,6 @@
     }
 
     function initialize() {
-        if (!startupCheck()) {
-            return;
-        }
-
         if (!requiredDOMExists()) {
             return;
         }
@@ -758,7 +568,6 @@
 
         setupProtection();
         setupMobileRedirect();
-        setupDevToolsCheck();
         setupCursor();
         setupPlayer();
 
@@ -784,9 +593,7 @@
         document.addEventListener(
             "DOMContentLoaded",
             initialize,
-            {
-                once: true
-            }
+            { once: true }
         );
     } else {
         initialize();
